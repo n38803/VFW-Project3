@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Shaun Thompson - Project 3 - 1302 -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="This is my second project for Visual Frameworks - A Calorie Counter" />
+		<meta name="keywords" content="Full Sail University, Shaun Thompson, Visual Frameworks Project, Calorie Counter" />
+		<meta name="robots" content="noindex, nofollow" />	
+	
+		<title>SMT Calorie Counter - Add A Meal</title>
+		
+		<link rel="stylesheet" type"text/css" href="css/style.css" medin="only screen and (max-width: 485px)" />
+		
+	</head>
+	
+	<body>
+		<div id="site-wrapper">
+			<div id="content">
+				<!-- Header -->
+				<header>
+					<p><h1>Track Your Meal!</h1></p>
+				</header>
+		
+				<nav>
+					<a href="#" id="clear">Clear Stored Data</a> - 
+					<a href="#" id="displayLink">View Stored Data</a>
+					<a href="additem.html" id="addNew" style="display:none">Make New Entry</a>
+				</nav>
+				
+				<!-- Form -->
+				<p>
+				<form action="#" method="post" id="form">
+					<fieldset>
+						<legend>Tracker</legend>
+							<ol>
+								<li><label for="date">Date: </label><input type="date" id="date"></li>
+								<li id="select"><label for="type">Meal Type:</label></li>		
+								<li>Food Group:</li>
+								<ul>
+									<li><input type="radio" value="Meat" id="meat" name="group"><label for="meat">Meat</label></li>
+									<li><input type="radio" value="Vegetable" id="vegetable" name="group"><label for="vegetable">Vegetable</label></li>
+									<li><input type="radio" value="Fruit" id="fruit" name="group"><label for="fruit">Fruit</label></li>
+									<li><input type="radio" value="Grain" id="grain" name="group"><label for="grain">Grain</label></li>
+									<li><input type="radio" value="Dairy" id="dairy" name="group"><label for="dairy">Dairy</label></li>
+								</ul>
+								<li><label for="name">Food Name:</label><input type="text" id="name" placeholder="Steak, Apple, Popcorn, Etc"/></li>
+								<li><label for="calories">Calorie Amount: </label><input type="range" id="calories" min=1 max=1,000>
+								<li><label for="notes">Additional Notes:</label><textarea id="notes"></textarea></li>
+							</ol>
+							<label type="hidden" value="true" />				
+					</fieldset>
+					<input type="submit" value="Save Meal" id="submit" />
+				</form>
+				</p>
+				<!-- Footer -->
+				<footer>	
+				&copy; SMT Designs - <a href="mailto:ShaunThompson@fullsail.edu">ShaunThompson@FullSail.edu</a>
+				</footer>
+		
+			<script src="js/main.js" type="text/javascript"></script>
+			</div>
+		</div>	
+	</body>	
+		
+</html>

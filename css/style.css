@@ -1,0 +1,89 @@
+/*
+Shaun M Thompson
+VFW 1302 - Project 3
+*/
+
+body{background-color:#b0c4de;font-family: Arial, Helvetica, san-serif;width: 100%px;margin: auto;padding: 10px}
+#site-wrapper{no-repeat;height: 885px;padding-top:}
+#content{width: 480;height; 690px;overflow; scroll;}
+
+h1{
+	margin: 0px;
+	border: 0px;
+	padding: 10px;
+	text-align: center;
+	font-style: italic;
+	color: #FFFFFF;
+	font-size: 55px;
+}
+
+h2{
+	margin: 0px;
+	border: 0px;
+	padding: 10px;
+	text-align: center;
+	font-style: italic;
+	color: #FFFFFF;
+	font-size: 35px;
+}
+
+p{
+	color: #000000;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 35px;
+}
+
+div{
+	color: #000000;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 25px;
+	text-align: center;
+}
+	
+footer{
+	color: #000000;
+	font: "Times New Roman", Times;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+input{
+	background-color: #FFFFFF;
+}
+
+input:focus{
+	border-color: blue;
+	background-color: #888888;
+}
+
+textarea:focus{
+	border-color: blue;
+	background-color: #888888;
+}
+
+select:focus{
+	border-color: blue;
+	background-color: #888888;
+}
+	
+
+li{
+	display: block;
+	border: 0px;
+	text-align: left;
+}
+
+a{
+	color: #000000;
+}
+
+a:hover{
+	color: #FFFFFF;
+	outline: 0px;
+}
+
+
+	

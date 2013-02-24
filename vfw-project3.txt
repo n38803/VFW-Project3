@@ -1,0 +1,9 @@
+Shaun Thompson
+VFW 1302 - Project 3
+02/24/2013
+
+GH Repository:
+https://github.com/n38803/VFW-Project3
+
+GH-Branch:
+https://github.com/n38803/VFW-Project2/tree/slave
