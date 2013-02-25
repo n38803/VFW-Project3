@@ -1,6 +1,6 @@
 //Shaun Thompson
 //VFW 1302 - Project 3
-//02/17/2013
+//02/24/2013
 
 
 // Wait until the DOM is ready
