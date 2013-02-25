@@ -28,10 +28,18 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 
 	//Save data into local storage
-	function storeData(){
-		var id				= Math.floor(Math.random()*1000000001);
+	function storeData(key){
+		//if there is no key, this is a brand new item & we need a new key
+		if(!(key)){
+			var id				= Math.floor(Math.random()*1000000001);
+		}else{
+			//set the id to the existing key that we're editing in order to rewrite local storage
+			id = key;
+		}
+		
 		//Gather up all our form field values and store them in an object
 		//Object properties contain array with form label and input values
+
 		getSelectedRadio();
 		var item			= {};
 			item.date		= ["Date: ", $('date').value];
@@ -91,11 +99,6 @@ window.addEventListener("DOMContentLoaded", function(){
 		selectLi.appendChild(makeSelect);
 	};
 
-	//Variable Defaults
-	var mealType = ["--- Choose A Meal Type ---", "Breakfast", "Lunch", "Dinner", "Other"],
-		groupValue,
-		errMsg = $('errors');
-
 	//Write data from local storage to browser
 	function getData(){
 		if(localStorage.length === 0){
@@ -151,9 +154,20 @@ window.addEventListener("DOMContentLoaded", function(){
 		deleteLink.href = "#";
 		deleteLink.key = key;
 		var deleteText = "Delete Meal Entry";
-		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);
+	};
+	
+	//Delete Item
+	function deleteItem(){
+		var ask = confirm("This meal entry will be removed. Are you sure?");
+		if(ask){
+			localStorage.removeItem(this.key);
+			window.location.reload();
+		}else{
+			alert("Entry will not be deleted.");
+		};
 	};
 	
 	//Edit Meal Entries
@@ -227,7 +241,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		//error display
 		if(messageAry.length >= 1){
-			for(var i=0; j=messagAry.length; i < j; i++){
+			for (var i = 0, j = messageAry.length; i < j; i++){
 				var txt = document.createElement('li');
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
@@ -235,11 +249,17 @@ window.addEventListener("DOMContentLoaded", function(){
 			e.preventDefault();
 			return false;
 		}else{
-			//if all is okay - save!
-			storeData();
+			//if all is okay - save! send key value which came from editdata function
+			//remember this key value was passed through editsubmit eventlistener
+			storeData(this.key);
 		};
 		
 	};
+	
+	//Variable Defaults
+	var mealType = ["--- Choose A Meal Type ---", "Breakfast", "Lunch", "Dinner", "Other"],
+		groupValue,
+		errMsg = $('errors');
 		
 	makeType();
 
