@@ -109,9 +109,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		$('items').style.display = "block";
 		for(var i=0, len=localStorage.length; i<len;i++){
 			var makeli = document.createElement('li');
-			
 			var linksLi = document.createElement('li');
-			
 			makeList.appendChild(makeli);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
@@ -124,12 +122,68 @@ window.addEventListener("DOMContentLoaded", function(){
 				var makeSubli = document.createElement('li');
 				makeSublist.appendChild(makeSubli);
 				var optSubText = obj[n][0]+" "+obj[n][1];
-				makeSubli.innerHTML = optSubText;
-				
+				makeSubli.innerHTML = optSubText;		
 				makeSublist.appendChild(linksLi);
 			};
-			//makeItemLinks(); //Create our edit & delete buttons for local storage
+			//Create our edit & delete buttons for local storage
+			makeItemLinks(localStorage.key(i), linksLi);
 		};
+	};
+	
+	//Make item(s)
+	function makeItemLinks(key, linksLi){
+		//add edit item link
+		var editLink = document.createElement('a');
+		editLink.href = "#";
+		editLink.key = key;
+		var editText = "Edit Meal Entry";
+		editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		linksLi.appendChild(editLink);
+		
+		//add line break
+		var breakTag = document.createElement('br');
+		linksLi.appendChild(breakTag);
+		
+		//add delete item link
+		var deleteLink = document.createElement('a');
+		deleteLink.href = "#";
+		deleteLink.key = key;
+		var deleteText = "Delete Meal Entry";
+		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.innerHTML = deleteText;
+		linksLi.appendChild(deleteLink);
+	};
+	
+	//Edit Meal Entries
+	function editItem() {
+		var value = localStorage.getItem(this.key);	
+		var item = JSON.parse(value);
+		
+		//show form again
+		toggleControls("off");
+		
+		//populate form field with current localstorage
+		$('date').value = item.date[1];
+		$('type').value = item.type[1];
+		var radios = document.forms[0].group;
+		for (var i=0, j = radios.length; i < j; i++){
+			if (radios[i].value == "Meat" && item.group[1] == "Meat"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(radios[i].value == "Vegetable" && item.group[1] == "Vegetable"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(radios[i].value == "Fruit" && item.group[1] == "Fruit"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(radios[i].value == "Grain" && item.group[1] == "Grain"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(radios[i].value == "Dairy" && item.group[1] == "Dairy"){
+				radios[i].setAttribute("checked", "checked");
+			};		
+		};
+		$('name').value = item.name[1];
+		$('calories').value = item.calories[1];
+		$('notes').value = item.notes[1];
+
 	};
 		
 	makeType();
