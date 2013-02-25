@@ -92,8 +92,9 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 
 	//Variable Defaults
-	var mealType = ["---Choose A Meal Type---", "Breakfast", "Lunch", "Dinner", "Other"],
-		groupValue;
+	var mealType = ["--- Choose A Meal Type ---", "Breakfast", "Lunch", "Dinner", "Other"],
+		groupValue,
+		errMsg = $('errors');
 
 	//Write data from local storage to browser
 	function getData(){
@@ -183,7 +184,61 @@ window.addEventListener("DOMContentLoaded", function(){
 		$('name').value = item.name[1];
 		$('calories').value = item.calories[1];
 		$('notes').value = item.notes[1];
+		
+		//remove initial listener from input save contact button
+		save.removeEventListener("click", storeData);
+		//change submit button to edit button
+		$('submit').value = "Edit Meal Entry";
+		var editSubmit = $('submit');
+		//save key value established in this function as property of editsubmit
+		editSubmit.addEventListener("click", validate);
+		editSubmit.key = this.key;
+		
 
+	};
+	
+	//validate information
+	function validate(e){
+		//define elements to check
+		var getType = $('type');
+		var getName = $('name');
+		
+		//reset error messages
+		errMsg.innerHTML = "";
+		getType.style.border = "1px solid black";
+		getName.style.border = "1px solid black";	
+		
+		//get error messages
+		var messageAry = [];
+		
+		//type validation
+		if(getType.value === "--- Choose A Meal Type ---"){
+			var typeError = "Please choose a meal type.";
+			getType.style.border = "1px solid red";
+			messageAry.push(typeError);
+		};
+		
+		//name validation
+		if(getName.value === ""){
+			var nameError = "Please enter a meal name.";
+			getName.style.border = "1px solid red";
+			messageAry.push(nameError);
+		};
+		
+		//error display
+		if(messageAry.length >= 1){
+			for(var i=0; j=messagAry.length; i < j; i++){
+				var txt = document.createElement('li');
+				txt.innerHTML = messageAry[i];
+				errMsg.appendChild(txt);
+			};
+			e.preventDefault();
+			return false;
+		}else{
+			//if all is okay - save!
+			storeData();
+		};
+		
 	};
 		
 	makeType();
@@ -195,9 +250,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	var clearLink = $('clear');
 	clearLink.addEventListener("click", clearLocal);
 	
-
 	var save = $('submit');
-	save.addEventListener("click", storeData);
+	save.addEventListener("click", validate);
 
 
 });
